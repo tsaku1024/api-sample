@@ -26,10 +26,11 @@ module.exports = {
   async createRecipe(r){
     const query = `
     INSERT INTO recipes(title, making_time, ingredients, serves, cost) 
-    VALUES($1, $2, $3, $4, $5)`
-    await pool.query(query, [r.title, r.making_time, r.ingredients, r.serves, r.cost]);
+    VALUES($1, $2, $3, $4, $5) 
+    RETURNING * `
+    let result = await pool.query(query, [r.title, r.making_time, r.ingredients, r.serves, r.cost]);
     
-    return r;
+    return result.rows[0];
   },
   
   async updateRecipe(id,r){
