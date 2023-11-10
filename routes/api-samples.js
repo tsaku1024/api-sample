@@ -2,12 +2,19 @@ var express = require('express');
 var recipe = require('../service/recipe-service')
 var router = express.Router();
 
+router.get('/', function(req, res, next) {
+  res.json({message : "hello world!"})
+});
+
 router.get('/recipes/:id?', function(req, res, next) {
   recipe.getRecipes(req.params.id)
   .then(result => res.json({
     recipes : result
   }))
-  .catch();
+  .catch(error => {
+    console.error(error)
+    res.status(500).json({ message: "Internal Server Error" });
+  });
 });
 
 router.post('/recipes', function(req, res, next) {  
