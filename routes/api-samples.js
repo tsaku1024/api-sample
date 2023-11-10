@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
 router.get('/recipes/:id?', function(req, res, next) {
   recipe.getRecipes(req.params.id)
   .then(result => {
-    if(id) res.json({recipes : result})
+    if(req.params.id) res.json({recipes : result})
     else res.json({message : "Recipe dettails by id" , recipes : result})
   })
   .catch(error => {
