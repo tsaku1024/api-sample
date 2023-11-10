@@ -18,13 +18,13 @@ router.get('/recipes/:id?', function(req, res, next) {
   });
 });
 
-router.post('/recipes', function(req, res, next) {  
+router.post('/recipes', function(req, res, next) {
   recipe.createRecipe(req.body)
   .then(result => res.json({
     message : "Recipe successfully created!",
     recipes : result
   }))
-  .catch(res.json({
+  .catch(error => res.json({
       message: "Recipe creation failed!",
       required: "title, making_time, serves, ingredients, cost"
   }));
