@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
 router.get('/recipes/:id?', function(req, res, next) {
   recipe.getRecipes(req.params.id)
   .then(result => {
-    if(req.params.id) res.json({message : "Recipe dettails by id" , recipes : result})
+    if(req.params.id) res.json({message : "Recipe details by id" , recipes : result})
     else res.json({recipes : result})
   })
   .catch(error => {
@@ -21,7 +21,7 @@ router.get('/recipes/:id?', function(req, res, next) {
 router.post('/recipes', function(req, res, next) {  
   recipe.createRecipe(req.body)
   .then(result => res.json({
-    message : "Recipe creation failed!",
+    message : "Recipe successfully created!",
     recipes : result
   }))
   .catch(res.json({
