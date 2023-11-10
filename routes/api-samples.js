@@ -21,7 +21,7 @@ router.get('/recipes/:id?', function(req, res, next) {
 router.post('/recipes', function(req, res, next) {  
   recipe.createRecipe(req.body)
   .then(result => res.json({
-    message : "Recipe successfully created!",
+    message : "Recipe creation failed!",
     recipes : result
   }))
   .catch(res.json({
